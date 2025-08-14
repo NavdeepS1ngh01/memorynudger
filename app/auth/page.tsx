@@ -19,7 +19,7 @@ export default function AuthPage() {
 
     // Cleanup the listener on unmount
     return () => {
-      (data as any)?.subscription.unsubscribe()
+      (data as { subscription?: { unsubscribe: () => void } })?.subscription?.unsubscribe()
     }
   }, [router])
 

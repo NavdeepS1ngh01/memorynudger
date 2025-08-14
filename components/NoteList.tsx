@@ -23,6 +23,7 @@ export default function NoteList({ userId, onEdit }: NoteListProps) {
   const [sortBy, setSortBy] = useState<'created_at' | 'updated_at'>('created_at')
   const [loading, setLoading] = useState(true)
 
+useEffect(() => {
   const fetchNotes = async () => {
     setLoading(true)
 
@@ -41,9 +42,9 @@ export default function NoteList({ userId, onEdit }: NoteListProps) {
     setLoading(false)
   }
 
-  useEffect(() => {
-    fetchNotes()
-  }, [userId, sortBy, search])
+  fetchNotes()
+}, [userId, sortBy, search])
+
 
   const getPreview = (text: string) =>
     text.length > 50 ? text.slice(0, 50) + '…' : text
